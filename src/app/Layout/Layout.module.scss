@@ -1,0 +1,38 @@
+.layout {
+  min-height: 100svh;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: var(--color-surface);
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+.theme-toggler {
+  background: none;
+  border: none;
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}
+
+.main {
+  padding-bottom: var(--spacing-xl);
+}

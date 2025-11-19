@@ -42,19 +42,19 @@ export const Balance = reatomComponent(() => {
   }
 
   return (
-    <div>
-      <header className={styles.header}>
+    <>
+      <div className={styles.header}>
         <h1 className={styles.title}>Account Balance</h1>
         <p className={styles.subtitle}>Manage your account balance</p>
-      </header>
+      </div>
 
-      <main className={styles.main}>
+      <div className={styles.content}>
         <Info amount={amount} lastUpdated={lastOperation?.[0].createdAt} />
 
         <Form onSubmit={topUpHandler} />
-      </main>
+      </div>
 
       <Loader fullscreen visible={isFetching} />
-    </div>
+    </>
   )
 })

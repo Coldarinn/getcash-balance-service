@@ -16,9 +16,8 @@
   opacity: 0.8;
 }
 
-.main {
+.content {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
-  padding-bottom: var(--spacing-xl);
 }

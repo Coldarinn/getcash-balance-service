@@ -1,7 +1,8 @@
+import type { ReactElement } from "react"
 import { toast } from "react-hot-toast"
 
 interface NotifyOptions {
-  message: string | React.ReactElement
+  message: string | ReactElement
   duration?: number
 }
 

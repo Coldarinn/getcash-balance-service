@@ -1,13 +1,16 @@
 import { Balance } from "@/pages/balance"
 
-import { NotificationProvider } from "./providers"
+import { Layout } from "./Layout"
+import { NotificationProvider, ThemeProvider } from "./providers"
 import "./styles"
 
 export const App = () => {
   return (
-    <>
-      <Balance />
-      <NotificationProvider />
-    </>
+    <ThemeProvider>
+      <Layout>
+        <Balance />
+        <NotificationProvider />
+      </Layout>
+    </ThemeProvider>
   )
 }
