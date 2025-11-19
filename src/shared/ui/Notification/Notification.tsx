@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+
 import styles from "./Notification.module.css"
 
 export type NotificationType = "success" | "error" | "warning" | "info"

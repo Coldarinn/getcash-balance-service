@@ -2,5 +2,9 @@
   "semi": false,
   "singleQuote": false,
   "printWidth": 150,
-  "experimentalTernaries": true
+  "experimentalTernaries": true,
+  "importOrder": ["^@/app/(.*)$", "^@/pages/(.*)$", "^@/entities/(.*)$", "^@/shared/api/(.*)$", "^@/shared/ui/(.*)$", "^@/assets/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
 }

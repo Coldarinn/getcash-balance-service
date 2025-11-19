@@ -1,2 +1,2 @@
-import "./variables.css"
 import "./globals.css"
+import "./variables.css"

@@ -1,7 +1,9 @@
-import { Input } from "@/shared/ui/Input"
-import styles from "./Form.module.css"
-import { useState, type FormEvent } from "react"
+import { type FormEvent, useState } from "react"
+
 import { Button } from "@/shared/ui/Button"
+import { Input } from "@/shared/ui/Input"
+
+import styles from "./Form.module.css"
 
 export const Form = () => {
   const [isLoading, setIsLoading] = useState(false)
