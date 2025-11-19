@@ -1,0 +1,41 @@
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form {
+  background: var(--color-surface);
+  padding: var(--space-xl);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  border: var(--border-width) solid var(--border-color);
+}
+
+.title {
+  margin: 0 0 var(--space-lg) 0;
+  font-size: var(--font-size-xl);
+  color: var(--color-text);
+  text-align: center;
+}
+
+.characterCount {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-align: right;
+  margin-top: var(--space-xs);
+}
+
+.submitButton {
+  width: 100%;
+  margin-top: var(--space-lg);
+}
+
+@media (max-width: 480px) {
+  .container {
+    max-width: 100%;
+  }
+
+  .form {
+    padding: var(--space-lg);
+  }
+}
