@@ -1,3 +1,7 @@
+DEMO - [https://getcash-balance-service.vercel.app/](https://getcash-balance-service.vercel.app/)
+
+---
+
 # 1. Правила зависимостей
 
 - `app/*` может импортировать из всех слоёв
