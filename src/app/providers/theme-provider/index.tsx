@@ -1,5 +1,5 @@
 import { type Theme, ThemeContext } from "@/shared/theme"
-import { type FC, type ReactNode, useCallback, useLayoutEffect, useMemo, useState } from "react"
+import { type ReactNode, useCallback, useLayoutEffect, useMemo, useState } from "react"
 
 const themeStorageKey = "getcashTheme"
 
@@ -16,7 +16,9 @@ interface ThemeProviderProps {
   children: ReactNode
 }
 
-export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
+export const ThemeProvider = (props: ThemeProviderProps) => {
+  const { children } = props
+
   const [theme, setTheme] = useState<Theme>(getInitialTheme)
 
   const changeTheme = useCallback((newTheme: Theme) => {

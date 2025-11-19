@@ -17,6 +17,8 @@ export const Balance = reatomComponent(() => {
   const getData = async () => {
     try {
       await Promise.all([getBalanceAction(mockedUserId), getBalanceHistoryAction(mockedUserId)])
+      setAmount(getBalanceAction.data())
+      setHistory(getBalanceHistoryAction.data() || [])
     } catch (error) {
       notify.error({ message: (error as ApiError).message })
     }
@@ -30,9 +32,8 @@ export const Balance = reatomComponent(() => {
   const isHistoryFetching = !getBalanceHistoryAction.ready()
 
   const isFetching = isBalanceFetching || isHistoryFetching
-
-  const [amount, setAmount] = useState(getBalanceAction.data())
-  const [history, setHistory] = useState(getBalanceHistoryAction.data() || [])
+  const [amount, setAmount] = useState<number | undefined>(0)
+  const [history, setHistory] = useState<BalanceOpearation[]>([])
 
   const lastOperation = history.length ? [...history].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()) : undefined
 

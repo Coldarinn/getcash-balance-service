@@ -14,7 +14,7 @@ export const Info = (props: Props) => {
 
   const formattedBalance = amount ? formatAmount(amount) : "-"
 
-  let formattedDate = formatDate(lastUpdated)
+  let formattedDate = formatDate(lastUpdated, true)
   formattedDate = formattedDate || "-"
 
   return (

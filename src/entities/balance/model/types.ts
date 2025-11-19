@@ -1,5 +1,5 @@
 export interface BalanceOpearation {
-  id: number
+  id: string
   amount: number
   comment: string
   type: "deposit" | "withdrawal"

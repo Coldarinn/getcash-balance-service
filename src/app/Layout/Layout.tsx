@@ -1,4 +1,6 @@
 import { useTheme } from "@/shared/theme"
+import { isMockedMode } from "@/shared/utils"
+import { reatomComponent } from "@reatom/react"
 import type { ReactNode } from "react"
 
 import styles from "./Layout.module.scss"
@@ -7,7 +9,7 @@ interface LayoutProps {
   children: ReactNode
 }
 
-export const Layout = (props: LayoutProps) => {
+export const Layout = reatomComponent((props: LayoutProps) => {
   const { children } = props
   const { theme, changeTheme } = useTheme()
 
@@ -36,9 +38,14 @@ export const Layout = (props: LayoutProps) => {
             </svg>
           }
         </button>
+
+        <label>
+          <input type="checkbox" checked={isMockedMode()} onChange={() => isMockedMode.set(!isMockedMode())} />
+          <span>{isMockedMode() ? "Turn off Mocked mode" : "Turn on Mocked mode"}</span>
+        </label>
       </header>
 
       <main className={styles.main}>{children}</main>
     </div>
   )
-}
+})

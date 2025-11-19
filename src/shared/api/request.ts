@@ -1,8 +1,14 @@
-import { formatDate } from "../utils"
+import { formatDate, isMockedModeStorageKey } from "../utils"
 import { getAccessToken, removeAccessToken, saveAccessToken } from "./tokenManager"
 import type { ApiError, HttpRequestOptions } from "./types"
 
 export const request = async (endpoint: string, optionsParam: HttpRequestOptions = {}): Promise<Response> => {
+  const isMockedModeStoraged = JSON.parse(localStorage.getItem(isMockedModeStorageKey) || "{}")
+
+  if (isMockedModeStoraged.data) {
+    return new Promise((resolve) => setTimeout(() => resolve(new Response()), 1000))
+  }
+
   const { retry = { count: 0 }, ...optionsWithBody } = optionsParam
   const { body, ...options } = optionsWithBody
 
