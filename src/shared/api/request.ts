@@ -1,3 +1,4 @@
+import { formatDate } from "../utils"
 import { getAccessToken, removeAccessToken, saveAccessToken } from "./tokenManager"
 import type { ApiError, HttpRequestOptions } from "./types"
 
@@ -38,7 +39,7 @@ export const request = async (endpoint: string, optionsParam: HttpRequestOptions
 
       const now = new Date()
       const durationTime = now.getTime() - startTime
-      console.log(`${options.method} ${url} - ${response.status} at ${now.toLocaleString()} (${durationTime}ms)`)
+      console.log(`${options.method} ${url} - ${response.status} at ${formatDate(now, true)} (${durationTime}ms)`)
 
       return response
     } finally {
@@ -80,7 +81,7 @@ export const request = async (endpoint: string, optionsParam: HttpRequestOptions
     return response
   } catch (error) {
     if (retry.count > 0 && !(error instanceof DOMException && error.name === "AbortError")) {
-      console.error("Network error: ", error)
+      console.error("Network Error\n\n", error)
       console.log(`Retrying fetch: ${options.method} ${url}`)
 
       await new Promise((resolve) => setTimeout(resolve, retry.delay ?? 1500))
@@ -91,7 +92,7 @@ export const request = async (endpoint: string, optionsParam: HttpRequestOptions
       })
     }
 
-    console.error(error)
+    console.error(`Network Error: ${options.method} ${url} at ${formatDate(new Date(), true)}\n\n`, error)
     throw error
   }
 }

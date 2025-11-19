@@ -1,32 +1,53 @@
+import type { ApiError } from "@/shared/api"
+import { mockedUserId } from "@/shared/constants"
+import { useNotification } from "@/shared/hooks"
+import { reatomComponent } from "@reatom/react"
 import { type FormEvent, useState } from "react"
+
+import { type BalanceOpearation, topUpBalanceAction } from "@/entities/balance"
 
 import { Button } from "@/shared/ui/Button"
 import { Input } from "@/shared/ui/Input"
 
+import { commentMaxLength, minAmount, validateAmount, validateComment } from "../../model"
 import styles from "./Form.module.scss"
 
-export const Form = () => {
-  const [isLoading, setIsLoading] = useState(false)
+interface Props {
+  onSubmit: (balanceOpearation: BalanceOpearation) => void
+}
 
-  const [amount, setAmount] = useState("")
+export const Form = reatomComponent((props: Props) => {
+  const { onSubmit } = props
+
+  const notify = useNotification()
+
+  const [amount, setAmount] = useState("100")
   const [comment, setComment] = useState("")
+  const amountError = validateAmount(amount)
+  const commentError = validateComment(comment)
 
-  const handleSubmit = async (e: FormEvent) => {
+  const isTopUpping = !topUpBalanceAction.ready()
+
+  const isDisabled = isTopUpping || Boolean(amountError || commentError)
+
+  const submitHandler = async (e: FormEvent) => {
     e.preventDefault()
 
+    if (amountError || commentError) return
+
     try {
-      setIsLoading(true)
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-    } finally {
-      setIsLoading(false)
+      const response = await topUpBalanceAction({ amount, comment, userId: mockedUserId })
+      setAmount("100")
+      setComment("")
+      onSubmit(response)
+    } catch (error) {
+      notify.error({ message: (error as ApiError).message })
     }
   }
 
-  const inputError = amount && parseFloat(amount) < minAmount ? `Minimum amount is ${minAmount}` : undefined
-
   return (
     <div className={styles.wrapper}>
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form className={styles.form} noValidate onSubmit={submitHandler}>
         <h2 className={styles.title}>Top Up Balance</h2>
 
         <Input
@@ -38,7 +59,7 @@ export const Form = () => {
           step="0.01"
           required
           placeholder="Enter amount"
-          error={inputError}
+          error={amountError}
         />
 
         <Input
@@ -48,20 +69,17 @@ export const Form = () => {
           multiline
           maxLength={200}
           placeholder={`Add a comment (max ${commentMaxLength} characters)`}
-          error={comment.length > 200 ? `Comment must not exceed ${commentMaxLength} characters` : undefined}
+          error={commentError}
         />
 
         <div className={styles["character-count"]}>
           {comment.length}/{commentMaxLength}
         </div>
 
-        <Button type="submit" loading={isLoading} disabled={isLoading} className={styles["submit-button"]}>
+        <Button type="submit" loading={isTopUpping} disabled={isDisabled} className={styles["submit-button"]}>
           Top Up Balance
         </Button>
       </form>
     </div>
   )
-}
-
-const commentMaxLength = 200
-const minAmount = 1
+})

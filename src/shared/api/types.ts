@@ -1,4 +1,5 @@
-export interface HttpRequestOptions extends RequestInit {
+export interface HttpRequestOptions extends Omit<RequestInit, "body"> {
+  body?: RequestInit["body"] | object
   retry?: {
     count: number
     delay?: number

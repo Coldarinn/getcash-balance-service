@@ -1,15 +1,21 @@
+import { formatDate } from "@/shared/utils"
+
+import { formatAmount } from "@/entities/balance"
+
 import styles from "./Info.module.scss"
 
-function formatCurrency(amount: number, currency: string = "USD"): string {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency,
-  }).format(amount)
+interface Props {
+  amount?: number
+  lastUpdated?: string | Date
 }
 
-export const Info = () => {
-  const formattedBalance = formatCurrency(1000)
-  const formattedDate = new Date("2023-01-01").toLocaleDateString()
+export const Info = (props: Props) => {
+  const { amount, lastUpdated } = props
+
+  const formattedBalance = amount ? formatAmount(amount) : "-"
+
+  let formattedDate = formatDate(lastUpdated)
+  formattedDate = formattedDate || "-"
 
   return (
     <div className={styles.wrapper}>

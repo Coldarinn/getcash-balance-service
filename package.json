@@ -13,9 +13,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reatom/core": "^1000.0.0-alpha.55",
+    "@reatom/react": "^1000.0.0-alpha.50",
+    "date-fns": "^4.1.0",
     "js-cookie": "^3.0.5",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "react-hot-toast": "^2.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

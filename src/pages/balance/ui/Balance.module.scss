@@ -1,7 +1,6 @@
 .header {
   text-align: center;
-  padding: var(--spacing-xl) var(--spacing-xl) 0;
-  margin-bottom: var(--spacing-xl);
+  margin: var(--spacing-xl);
 }
 
 .title {
@@ -18,5 +17,8 @@
 }
 
 .main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
   padding-bottom: var(--spacing-xl);
 }
