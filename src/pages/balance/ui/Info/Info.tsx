@@ -13,15 +13,17 @@ export const Info = (props: Props) => {
   const { amount, lastUpdated } = props
 
   const formattedBalance = amount ? formatAmount(amount) : "-"
-
-  let formattedDate = formatDate(lastUpdated, true)
-  formattedDate = formattedDate || "-"
+  const formattedDate = formatDate(lastUpdated, true) || "-"
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>Current balance</div>
+
       <div className={styles.balance}>{formattedBalance}</div>
-      <div className={styles["last-updated"]}>Last updated: {formattedDate}</div>
+
+      <div className={styles["last-updated"]}>
+        Last updated: <time dateTime={lastUpdated?.toString()}>{formattedDate}</time>
+      </div>
     </div>
   )
 }

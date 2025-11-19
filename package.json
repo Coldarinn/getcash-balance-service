@@ -6,23 +6,27 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "format": "prettier . --write",
     "lint:js": "eslint .",
     "lint:css": "stylelint \"src/**/*.{css,scss,pcss}\"",
     "lint:css:fix": "stylelint \"src/**/*.{css,scss,pcss}\" --fix",
-    "format": "prettier . --write",
-    "preview": "vite preview"
+    "test": "vitest"
   },
   "dependencies": {
     "@reatom/core": "^1000.0.0-alpha.55",
     "@reatom/react": "^1000.0.0-alpha.50",
     "date-fns": "^4.1.0",
     "js-cookie": "^3.0.5",
+    "jsdom": "^27.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-hot-toast": "^2.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
     "@trivago/prettier-plugin-sort-imports": "^6.0.0",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^24.10.0",
@@ -39,6 +43,7 @@
     "stylelint-config-standard-scss": "^16.0.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.3",
-    "vite": "^7.2.2"
+    "vite": "^7.2.2",
+    "vitest": "^4.0.10"
   }
 }
