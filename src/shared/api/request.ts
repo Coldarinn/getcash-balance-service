@@ -6,7 +6,7 @@ export const request = async (endpoint: string, optionsParam: HttpRequestOptions
   const isMockedModeStoraged = JSON.parse(localStorage.getItem(isMockedModeStorageKey) || "{}")
 
   if (isMockedModeStoraged.data) {
-    return new Promise((resolve) => setTimeout(() => resolve(new Response()), 1000))
+    return new Promise((resolve) => setTimeout(() => resolve(new Response("{}")), 1000))
   }
 
   const { retry = { count: 0 }, ...optionsWithBody } = optionsParam

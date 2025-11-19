@@ -11,10 +11,8 @@ interface TopUpBalanceDto {
   comment: string
 }
 
-export const topUpBalanceAction = action(async (dto: TopUpBalanceDto): Promise<BalanceOpearation | undefined> => {
+export const topUpBalanceAction = action(async (dto: TopUpBalanceDto): Promise<BalanceOpearation> => {
   const { userId, ...body } = dto
-
-  if (!userId) return
 
   const response = await wrap(api.post<BalanceOpearation>(`/balance/${userId}`, { body }))
 

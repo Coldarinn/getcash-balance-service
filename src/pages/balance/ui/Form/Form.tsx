@@ -40,6 +40,7 @@ export const Form = reatomComponent((props: Props) => {
       setAmount("100")
       setComment("")
       onSubmit(response)
+      notify.success({ message: "Balance has been successfully topped up" })
     } catch (error) {
       notify.error({ message: (error as ApiError).message })
     }

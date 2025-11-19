@@ -1,6 +1,7 @@
 import { api } from "@/shared/api"
 import { isMockedMode } from "@/shared/utils"
 import { action, withAsyncData, wrap } from "@reatom/core"
+import { subDays } from "date-fns"
 
 import type { BalanceOpearation } from "../model"
 
@@ -9,8 +10,6 @@ interface getBalanceHistoryResponse {
 }
 
 export const getBalanceHistoryAction = action(async (userId: string): Promise<BalanceOpearation[]> => {
-  if (!userId) return []
-
   const response = await wrap(api.get<getBalanceHistoryResponse>(`/balance/history/${userId}`))
 
   if (isMockedMode()) {
@@ -20,10 +19,10 @@ export const getBalanceHistoryAction = action(async (userId: string): Promise<Ba
         amount: 1000,
         comment: "test",
         type: "deposit",
-        createdAt: new Date(),
+        createdAt: subDays(new Date(), 1),
       },
     ]
   }
 
   return response.history
-}).extend(withAsyncData())
+}).extend(withAsyncData({ initState: [] }))
