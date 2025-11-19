@@ -1,10 +1,10 @@
-import styles from "./Balance.module.css"
+import styles from "./Balance.module.scss"
 import { Form } from "./Form"
 import { Info } from "./Info"
 
 export const Balance = () => {
   return (
-    <div className={styles.page}>
+    <div>
       <header className={styles.header}>
         <h1 className={styles.title}>Account Balance</h1>
         <p className={styles.subtitle}>Manage your account balance</p>

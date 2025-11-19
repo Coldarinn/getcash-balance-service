@@ -1,6 +1,6 @@
 import { type InputHTMLAttributes, useId } from "react"
 
-import styles from "./Input.module.css"
+import styles from "./Input.module.scss"
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
   label?: string
@@ -20,7 +20,7 @@ export const Input = (props: InputProps) => {
   const InputComponent = multiline ? "textarea" : "input"
 
   return (
-    <div className={styles.container}>
+    <div className={styles.wrapper}>
       {label && (
         <label htmlFor={inputId} className={styles.label}>
           {label}
@@ -28,7 +28,7 @@ export const Input = (props: InputProps) => {
       )}
       <InputComponent {...optherProps} id={inputId} className={inputClass} />
       {error && (
-        <div id={errorId} className={styles.errorMessage}>
+        <div id={errorId} className={styles["error-message"]}>
           {error}
         </div>
       )}

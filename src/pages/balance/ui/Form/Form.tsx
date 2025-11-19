@@ -3,7 +3,7 @@ import { type FormEvent, useState } from "react"
 import { Button } from "@/shared/ui/Button"
 import { Input } from "@/shared/ui/Input"
 
-import styles from "./Form.module.css"
+import styles from "./Form.module.scss"
 
 export const Form = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -25,13 +25,13 @@ export const Form = () => {
   const inputError = amount && parseFloat(amount) < minAmount ? `Minimum amount is ${minAmount}` : undefined
 
   return (
-    <div className={styles.container}>
+    <div className={styles.wrapper}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <h2 className={styles.title}>Top Up Balance</h2>
 
         <Input
           type="number"
-          label="Amount"
+          label="Amount *"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           min={minAmount}
@@ -42,7 +42,7 @@ export const Form = () => {
         />
 
         <Input
-          label="Comment (optional)"
+          label="Comment"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           multiline
@@ -51,11 +51,11 @@ export const Form = () => {
           error={comment.length > 200 ? `Comment must not exceed ${commentMaxLength} characters` : undefined}
         />
 
-        <div className={styles.characterCount}>
+        <div className={styles["character-count"]}>
           {comment.length}/{commentMaxLength}
         </div>
 
-        <Button type="submit" loading={isLoading} disabled={isLoading} className={styles.submitButton}>
+        <Button type="submit" loading={isLoading} disabled={isLoading} className={styles["submit-button"]}>
           Top Up Balance
         </Button>
       </form>

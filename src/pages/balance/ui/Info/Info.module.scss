@@ -1,73 +1,42 @@
-.card {
+.wrapper {
   background: var(--color-surface);
   padding: var(--spacing-xl);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-sm);
   text-align: center;
   border: var(--border-width) solid var(--border-color);
+
+  &.error {
+    border-color: var(--color-error);
+    background-color: rgb(211 47 47 / 5%);
+  }
 }
 
-.card.error {
-  border-color: var(--color-error);
-  background-color: rgba(211, 47, 47, 0.05);
-}
-
-.amount {
+.title {
   font-size: var(--font-size-2xl);
   font-weight: 700;
   color: var(--color-text);
   margin-bottom: var(--spacing-xs);
 }
 
-.label {
+.balance {
   font-size: var(--font-size-base);
   color: var(--color-text-secondary);
   margin-bottom: var(--spacing-sm);
 }
 
-.lastUpdated {
+.last-updated {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   opacity: 0.7;
-}
-
-.skeleton {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-sm);
-}
-
-.skeletonAmount,
-.skeletonLabel {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
-  border-radius: 4px;
-}
-
-.skeletonAmount {
-  height: 32px;
-  width: 120px;
-}
-
-.skeletonLabel {
-  height: 16px;
-  width: 80px;
 }
 
 @keyframes loading {
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -200% 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .skeletonAmount,
-  .skeletonLabel {
-    animation: none;
   }
 }

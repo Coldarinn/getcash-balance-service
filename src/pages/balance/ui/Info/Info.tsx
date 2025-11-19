@@ -1,4 +1,4 @@
-import styles from "./Info.module.css"
+import styles from "./Info.module.scss"
 
 function formatCurrency(amount: number, currency: string = "USD"): string {
   return new Intl.NumberFormat("en-US", {
@@ -12,10 +12,10 @@ export const Info = () => {
   const formattedDate = new Date("2023-01-01").toLocaleDateString()
 
   return (
-    <div className={styles.card}>
-      <div className={styles.label}>Current balance</div>
-      <div className={styles.amount}>{formattedBalance}</div>
-      <div className={styles.lastUpdated}>Last updated: {formattedDate}</div>
+    <div className={styles.wrapper}>
+      <div className={styles.title}>Current balance</div>
+      <div className={styles.balance}>{formattedBalance}</div>
+      <div className={styles["last-updated"]}>Last updated: {formattedDate}</div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-.container {
+.wrapper {
   max-width: 400px;
   margin: 0 auto;
 }
@@ -18,24 +18,14 @@
   text-align: center;
 }
 
-.characterCount {
+.character-count {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   text-align: right;
   margin-top: var(--space-xs);
 }
 
-.submitButton {
+.submit-button {
   width: 100%;
   margin-top: var(--space-lg);
-}
-
-@media (max-width: 480px) {
-  .container {
-    max-width: 100%;
-  }
-
-  .form {
-    padding: var(--space-lg);
-  }
 }
